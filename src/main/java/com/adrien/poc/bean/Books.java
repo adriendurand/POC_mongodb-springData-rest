@@ -6,25 +6,26 @@ import org.springframework.data.annotation.Id;
 public class Books {
 
 	@Id
-	private Long id;
+	private long id;
 	private String title;
 	private String author;
 	private int nbPages;
 
-	public Books() {}
+	public Books() {
+	}
 
-	public Books(Long id, String title, String author, int nbPages) {
+	public Books(long id, String title, String author, int nbPages) {
 		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.nbPages = nbPages;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
