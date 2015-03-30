@@ -10,7 +10,7 @@ Add a PATH variable in your environement variable: mongodb ==> C:\mongodb\bin
 Create the log, db and config folders in C:\mongodb
 
 Run the shell command below in order to complete the mongoDB configuration
-
+```javascript
 * cd c:\mongodb\bin
 * mongod --remove
 * cd ..
@@ -21,6 +21,7 @@ Run the shell command below in order to complete the mongoDB configuration
 * echo dbpath=c:\mongodb\db\mongodb>> "C:\mongodb\config\mongod.cfg" (add the conf to the db folder)
 * sc.exe create MongoDB binPath= "\"c:\mongodb\bin\mongod.exe\" --service --config=\"c:\mongodb\config\mongod.cfg\"" DisplayName= "MongoDB" start= "auto" (create and define the mongodb server as a service)
 * net start MongoDB (launch mongoDB service)
+```
  
 Additional info: To access your mongo DB by shell, run the following command:
 * mongo <your_database_name>
@@ -32,7 +33,13 @@ If no parameter the default selected base will be the database "test"
 In order to auto incrementate the id field you need to create a collection as a sequence
 
 In a shell, run the command bellow :
-db.sequence.insert({_id :"<your_sequence_name>",seq: 0})
+
+```javascript
+db.sequence.insert({
+  _id :"<your_sequence_name>",
+  seq: 0
+})
+```
 
 ## Use
 
