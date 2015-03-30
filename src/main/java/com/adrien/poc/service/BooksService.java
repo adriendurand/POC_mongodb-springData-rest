@@ -8,52 +8,74 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adrien.poc.bean.Books;
+import com.adrien.poc.bean.Sequence;
 import com.adrien.poc.repository.BookRepository;
 import com.adrien.poc.repository.SequenceRepository;
 
+/**
+ * This class is the service for the books {@link Books}
+ * 
+ * @author adurand
+ */
 @Service
 public class BooksService extends BaseService<Books, BookRepository> {
 
+	// The sequence key name for the books
 	private static final String BOOKS_SEQ_KEY = "book";
 
+	/**
+	 * The constructor of the class that initialize the repository and the logger of the class
+	 * 
+	 * @param repository the repository for the books
+	 */
 	@Autowired
-	public BooksService(BookRepository repo) {
-		super(repo, LoggerFactory.getLogger(BooksService.class));
+	public BooksService(BookRepository repository) {
+		super(repository, LoggerFactory.getLogger(BooksService.class));
 	}
 
+	/**
+	 * The repository for the sequence {@link Sequence}
+	 */
 	@Autowired
-	private SequenceRepository sequenceService;
+	private SequenceRepository sequenceRepo;
 
 	/**
-	 * This method create a few books
+	 * This method create a few books {@link Books}
 	 * 
+	 * @return a list {@link List} of books created {@link Books}
 	 * @throws Exception
 	 */
 	public List<Books> createBooks() throws Exception {
 		logger.debug("Books creation");
 		List<Books> books = new ArrayList<Books>();
-		books
-				.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY), "50 Nuances de grey", "Dorcel", 600)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY), "Meurtre sur le nil",
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "50 Nuances de grey", "Dorcel", 600)));
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "Meurtre sur le nil",
 				"Agatha Christie", 560)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY),
-				"Harry Potter à l'école des sorciers", "J.K Roling", 400)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY), "50 Nuances plus sombres",
-				"Dorcel", 800)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY),
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "Harry Potter à l'école des sorciers",
+				"J.K Roling", 400)));
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "50 Nuances plus sombres", "Dorcel",
+				800)));
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY),
 				"Harry Potter et le prince de sang mélé", "J.K Roling", 653)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY),
-				"Harry Potter et la prison d'azkaban", "J.K Roling", 497)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY), "L'homme qui voulait être heureux",
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "Harry Potter et la prison d'azkaban",
+				"J.K Roling", 497)));
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "L'homme qui voulait être heureux",
 				"Nicolas Gounelle", 187)));
-		books.add(repo.save(new Books(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY), "L'homme qui voulait être heureux",
+		books.add(repo.save(new Books(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY), "L'homme qui voulait être heureux",
 				"Nicolas Gounelle", 187)));
 
 		return books;
 	}
 
+	/**
+	 * This method is the service for the creation of a book {@link Books}
+	 * 
+	 * @param book the book to create {@link Books}
+	 * @return the book created {@link Books}
+	 * @throws Exception
+	 */
 	public Books createBook(Books book) throws Exception {
-		book.setId(sequenceService.getNextSequenceId(BOOKS_SEQ_KEY));
+		book.setId(sequenceRepo.getNextSequenceId(BOOKS_SEQ_KEY));
 		return repo.save(book);
 	}
 

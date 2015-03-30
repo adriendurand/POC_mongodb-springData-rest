@@ -3,6 +3,11 @@ package com.adrien.poc.bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * This class is the POJO related to the sequence collection of the mongo database
+ * 
+ * @author adurand
+ */
 @Document(collection = "sequence")
 public class Sequence {
 

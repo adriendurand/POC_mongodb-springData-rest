@@ -5,13 +5,22 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+/**
+ * This class is the main service that access all the basic method from spring data
+ * 
+ * @author adurand
+ * @param <T> the entity
+ * @param <A> the repository related to the entity
+ */
 public class BaseService<T, A extends MongoRepository<T, Long>> {
 
+	// The repository
 	protected A repo;
+	// The logger
 	protected Logger logger;
 
 	/**
-	 * Constructor of the class
+	 * Constructor of the class that initialize the repository and the logger
 	 * 
 	 * @param repo
 	 * @param logger

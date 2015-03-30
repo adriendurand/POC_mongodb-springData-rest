@@ -10,6 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.adrien.poc.bean.Sequence;
 
+/**
+ * This class is the repository for getting a sequence key from mongo database
+ * 
+ * @author adurand
+ */
 @Repository
 public class SequenceRepository {
 
@@ -34,6 +39,7 @@ public class SequenceRepository {
 		// return new increased id
 		FindAndModifyOptions options = new FindAndModifyOptions();
 		options.returnNew(true);
+
 		// this is the magic happened.
 		Sequence seqId = mongoOperation.findAndModify(query, update, options, Sequence.class);
 
