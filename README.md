@@ -24,7 +24,9 @@ Run the shell command below in order to complete the mongoDB configuration
 ```
  
 Additional info: To access your mongo DB by shell, run the following command:
-* mongo <your_database_name>
+```javascript
+mongo <your_database_name>
+```
 
 If no parameter the default selected base will be the database "test"
 
